@@ -47,7 +47,6 @@ class VideoScreen extends StatelessWidget {
           aspectRatio: 16 / 9,
           child: BetterPlayer.network(
             URL + model.link,
-//                      "http://192.168.1.9:8000/storage/userVideos/1/60c0b6d4bbf32.mp4",
             betterPlayerConfiguration: BetterPlayerConfiguration(
               aspectRatio: 16 / 9,
               autoDispose: false,
@@ -97,7 +96,7 @@ class VideoScreen extends StatelessWidget {
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(
-                  horizontal: 30,
+                  horizontal: 20,
                 ),
                 child: Column(
                   children: [
@@ -105,7 +104,7 @@ class VideoScreen extends StatelessWidget {
                       "Summary",
                       style: Theme.of(context).textTheme.bodyText1,
                     ),
-                    Text(model.summary.summary),
+                    SelectableText(model.summary.summary),
                   ],
                 ),
               ),
@@ -121,10 +120,14 @@ class VideoScreen extends StatelessWidget {
                         "Keywords",
                         style: Theme.of(context).textTheme.bodyText1,
                       ),
-                    Column(
+                    Wrap(
                       children: List.generate(
                         model.keywords.length,
-                        (index) => Text(model.keywords[index].keyword),
+                        (index) => Card(
+                            child: Padding(
+                          padding: const EdgeInsets.all(4.0),
+                          child: SelectableText(model.keywords[index].keyword),
+                        )),
                       ),
                     ),
                   ],
@@ -143,19 +146,31 @@ class VideoScreen extends StatelessWidget {
                     Column(
                       children: List.generate(
                         model.timestamps.length,
-                        (index) => Column(
-                          children: [
-                            Row(
+                        (index) => Card(
+                          elevation: 3,
+                          child: Padding(
+                            padding: const EdgeInsets.all(4.0),
+                            child: Column(
                               children: [
-                                Text(model.timestamps[index].startTime),
-                                SizedBox(
-                                  width: 15,
+                                Wrap(
+                                  children: [
+                                    Text(
+                                      "From: " +
+                                          model.timestamps[index].startTime,
+                                    ),
+                                    SizedBox(
+                                      width: 15,
+                                    ),
+                                    Text(
+                                      "To: " + model.timestamps[index].endTime,
+                                    ),
+                                  ],
                                 ),
-                                Text(model.timestamps[index].endTime),
+                                SelectableText(
+                                    model.timestamps[index].description),
                               ],
                             ),
-                            Text(model.timestamps[index].description),
-                          ],
+                          ),
                         ),
                       ),
                     ),

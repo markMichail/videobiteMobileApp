@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:videobite/shared/components/constants.dart';
 
 class DioHelper {
   static Dio dio;
@@ -7,7 +8,7 @@ class DioHelper {
   static init() {
     dio = Dio(
       BaseOptions(
-        baseUrl: 'http://192.168.1.9:8000/api/',
+        baseUrl: '$URL/api/',
         receiveDataWhenStatusError: true,
       ),
     );

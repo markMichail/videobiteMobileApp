@@ -67,8 +67,12 @@ class Timestamp {
   Timestamp.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     videoId = json['video_id'];
-    startTime = json['start_time'];
-    endTime = json['end_time'];
+    startTime = (double.parse(json['start_time']) / 60)
+        .toStringAsPrecision(3)
+        .replaceAll(".", ":");
+    endTime = (double.parse(json['end_time']) / 60)
+        .toStringAsPrecision(3)
+        .replaceAll(".", ":");
     description = json['description'];
     createdAt = json['created_at'];
   }

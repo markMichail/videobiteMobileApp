@@ -51,10 +51,7 @@ class HomeScreen extends StatelessWidget {
           );
         },
         child: Card(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10),
-          ),
-          elevation: 2,
+          elevation: 4,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -67,7 +64,6 @@ class HomeScreen extends StatelessWidget {
                       aspectRatio: 16 / 9,
                       child: BetterPlayer.network(
                         URL + model.link,
-//                      "http://192.168.1.9:8000/storage/userVideos/1/60c0b6d4bbf32.mp4",
                         betterPlayerConfiguration: BetterPlayerConfiguration(
                           aspectRatio: 16 / 9,
                           autoDispose: false,
@@ -77,15 +73,18 @@ class HomeScreen extends StatelessWidget {
                       ),
                     ),
                     SizedBox(
-                      height: 20,
+                      height: 10,
                     ),
-                    Text(
-                      model.title,
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                      style: TextStyle(
-                        fontSize: 14.0,
-                        height: 1.3,
+                    Padding(
+                      padding: const EdgeInsetsDirectional.only(start: 3.0),
+                      child: Text(
+                        model.title,
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                          fontSize: 14.0,
+                          height: 1.3,
+                        ),
                       ),
                     ),
                   ],

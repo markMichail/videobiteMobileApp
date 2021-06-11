@@ -18,7 +18,7 @@ class AppLayout extends StatelessWidget {
           return Scaffold(
             appBar: AppBar(
               title: Text(
-                'VideBite',
+                'VideoBite',
               ),
               actions: [
                 IconButton(
