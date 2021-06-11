@@ -2,6 +2,32 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:videobite/shared/styles/colors.dart';
 
+Widget emptyPage({String text, BuildContext c}) {
+  return Column(
+    mainAxisAlignment: MainAxisAlignment.center,
+    crossAxisAlignment: CrossAxisAlignment.center,
+    children: [
+      Expanded(
+        child: Image(
+          image: AssetImage('assets/images/empty.png'),
+        ),
+      ),
+      if (text != null)
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+          child: Text(
+            text,
+            textAlign: TextAlign.center,
+            style: Theme.of(c).textTheme.bodyText1,
+          ),
+        ),
+      SizedBox(
+        height: 50,
+      ),
+    ],
+  );
+}
+
 Widget defaultButton({
   double width = double.infinity,
   Color background = defaultColor,
