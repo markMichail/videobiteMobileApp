@@ -5,3 +5,5 @@ const GET_VIDEO = 'video/';
 const UPLOAD_VIDEO = 'files';
 const GET_HISTORY = 'files';
 const DELETE_VIDEO = 'files/';
+const LOGOUT = 'logout';
+const VIEW_EDIT_REQUEST = 'Request/videoView/';

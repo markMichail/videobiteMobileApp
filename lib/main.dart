@@ -8,7 +8,6 @@ import 'package:videobite/shared/network/remote/dio_helper.dart';
 import 'package:videobite/shared/styles/themes.dart';
 
 import 'layout/app_layout/app_layout.dart';
-import 'layout/cubit/cubit.dart';
 import 'modules/login/login_screen.dart';
 import 'modules/on_boarding/on_boarding_screen.dart';
 
@@ -37,16 +36,11 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => AppCubit()
-        ..getHomeData()
-        ..getHistory(),
-      child: MaterialApp(
-        title: 'Video Bite',
-        debugShowCheckedModeBanner: false,
-        theme: lightTheme,
-        home: getHome(),
-      ),
+    return MaterialApp(
+      title: 'Video Bite',
+      debugShowCheckedModeBanner: false,
+      theme: lightTheme,
+      home: getHome(),
     );
   }
 }
