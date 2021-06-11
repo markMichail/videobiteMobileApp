@@ -5,7 +5,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:videobite/models/video_model.dart';
 import 'package:videobite/modules/video/cubit/cubit.dart';
 import 'package:videobite/modules/video/cubit/states.dart';
+import 'package:videobite/modules/view_edit_requests/view_edit_requests_screen.dart';
 import 'package:videobite/shared/components/components.dart';
+import 'package:videobite/shared/components/constants.dart';
 
 class VideoScreen extends StatelessWidget {
   final int id;
@@ -39,13 +41,12 @@ class VideoScreen extends StatelessWidget {
   }
 
   Widget videoItem(VideoData model, context) {
-    print("http://192.168.1.9:8000" + model.link);
     return Column(
       children: [
         AspectRatio(
           aspectRatio: 16 / 9,
           child: BetterPlayer.network(
-            "http://192.168.1.9:8000" + model.link,
+            URL + model.link,
 //                      "http://192.168.1.9:8000/storage/userVideos/1/60c0b6d4bbf32.mp4",
             betterPlayerConfiguration: BetterPlayerConfiguration(
               aspectRatio: 16 / 9,
@@ -73,7 +74,15 @@ class VideoScreen extends StatelessWidget {
                   ),
                   Expanded(
                     child: defaultTextButton(
-                        function: () {}, text: "View Edit Requests"),
+                        function: () {
+                          navigateTo(
+                            context,
+                            ViewEditRequestsScreen(
+                              id: model.id,
+                            ),
+                          );
+                        },
+                        text: "View Edit Requests"),
                   ),
                   Container(
                     width: 1,

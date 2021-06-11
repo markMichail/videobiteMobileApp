@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:videobite/layout/cubit/cubit.dart';
 import 'package:videobite/layout/cubit/states.dart';
+import 'package:videobite/shared/components/components.dart';
 
 class HistoryScreen extends StatelessWidget {
   @override
@@ -16,30 +17,32 @@ class HistoryScreen extends StatelessWidget {
           fallback: (context) => Center(
             child: CircularProgressIndicator(),
           ),
-          builder: (context) => Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 10.0,
-            ),
-            child: ListView(
-              physics: BouncingScrollPhysics(),
-              children: [
-                for (int i = 0; i < cubit.historyModel.data.length; i++)
-                  Card(
-                    child: ListTile(
-                      title: Text(cubit.historyModel.data[i].title),
-                      trailing: IconButton(
-                        onPressed: () {
-                          cubit.deleteVideo(cubit.historyModel.data[i]);
-                        },
-                        icon: Icon(
-                          Icons.delete,
-                          color: Colors.red,
-                        ),
-                      ),
-                    ),
+          builder: (context) => cubit.historyModel.data.length == 0
+              ? emptyPage(text: "Upload video now!", c: context)
+              : Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 10.0,
                   ),
-              ],
-            ),
+                  child: ListView(
+                    physics: BouncingScrollPhysics(),
+                    children: [
+                      for (int i = 0; i < cubit.historyModel.data.length; i++)
+                        Card(
+                          child: ListTile(
+                            title: Text(cubit.historyModel.data[i].title),
+                            trailing: IconButton(
+                              onPressed: () {
+                                cubit.deleteVideo(cubit.historyModel.data[i]);
+                              },
+                              icon: Icon(
+                                Icons.delete,
+                                color: Colors.red,
+                              ),
+                            ),
+                          ),
+                        ),
+                    ],
+                  ),
 //            child: SingleChildScrollView(
 //              physics: BouncingScrollPhysics(),
 //              child: Table(
@@ -86,7 +89,7 @@ class HistoryScreen extends StatelessWidget {
 //                ],
 //              ),
 //            ),
-          ),
+                ),
         );
       },
     );

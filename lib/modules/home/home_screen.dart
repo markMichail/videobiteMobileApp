@@ -7,6 +7,7 @@ import 'package:videobite/layout/cubit/states.dart';
 import 'package:videobite/models/home_model.dart';
 import 'package:videobite/modules/video/video_screen.dart';
 import 'package:videobite/shared/components/components.dart';
+import 'package:videobite/shared/components/constants.dart';
 
 class HomeScreen extends StatelessWidget {
   @override
@@ -17,7 +18,9 @@ class HomeScreen extends StatelessWidget {
         var cubit = AppCubit.get(context);
         return ConditionalBuilder(
           condition: cubit.homeModel != null,
-          builder: (context) => videosBuilder(cubit.homeModel, cubit, context),
+          builder: (context) => cubit.homeModel.data.videos.length == 0
+              ? emptyPage(text: "Upload video now!", c: context)
+              : videosBuilder(cubit.homeModel, cubit, context),
           fallback: (context) => Center(
             child: CircularProgressIndicator(),
           ),
@@ -63,7 +66,7 @@ class HomeScreen extends StatelessWidget {
                     AspectRatio(
                       aspectRatio: 16 / 9,
                       child: BetterPlayer.network(
-                        "http://192.168.1.9:8000" + model.link,
+                        URL + model.link,
 //                      "http://192.168.1.9:8000/storage/userVideos/1/60c0b6d4bbf32.mp4",
                         betterPlayerConfiguration: BetterPlayerConfiguration(
                           aspectRatio: 16 / 9,
