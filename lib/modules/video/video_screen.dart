@@ -3,9 +3,11 @@ import 'package:conditional_builder/conditional_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:videobite/models/video_model.dart';
+import 'package:videobite/modules/request_edit_summary/request_edit_summary_screen.dart';
 import 'package:videobite/modules/video/cubit/cubit.dart';
 import 'package:videobite/modules/video/cubit/states.dart';
 import 'package:videobite/modules/view_edit_requests/view_edit_requests_screen.dart';
+import 'package:videobite/modules/view_summaries/video_summaries_screen.dart';
 import 'package:videobite/shared/components/components.dart';
 import 'package:videobite/shared/components/constants.dart';
 
@@ -64,7 +66,14 @@ class VideoScreen extends StatelessWidget {
 //                  Expanded(child: Container(color: defaultColor,))
                   Expanded(
                     child: defaultTextButton(
-                        function: () {}, text: "Request Edit Summary"),
+                      function: () {
+                        navigateTo(
+                          context,
+                          RequestEditSummaryScreen(id: model.id),
+                        );
+                      },
+                      text: "Request Edit Summary",
+                    ),
                   ),
                   Container(
                     width: 1,
@@ -73,15 +82,16 @@ class VideoScreen extends StatelessWidget {
                   ),
                   Expanded(
                     child: defaultTextButton(
-                        function: () {
-                          navigateTo(
-                            context,
-                            ViewEditRequestsScreen(
-                              id: model.id,
-                            ),
-                          );
-                        },
-                        text: "View Edit Requests"),
+                      function: () {
+                        navigateTo(
+                          context,
+                          ViewEditRequestsScreen(
+                            id: model.id,
+                          ),
+                        );
+                      },
+                      text: "View Edit Requests",
+                    ),
                   ),
                   Container(
                     width: 1,
@@ -90,7 +100,14 @@ class VideoScreen extends StatelessWidget {
                   ),
                   Expanded(
                     child: defaultTextButton(
-                        function: () {}, text: "Video Summaries"),
+                      function: () {
+                        navigateTo(
+                          context,
+                          ViewSummariesScreen(id: model.id),
+                        );
+                      },
+                      text: "Video Summaries",
+                    ),
                   ),
                 ],
               ),
@@ -98,15 +115,17 @@ class VideoScreen extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(
                   horizontal: 20,
                 ),
-                child: Column(
-                  children: [
-                    Text(
-                      "Summary",
-                      style: Theme.of(context).textTheme.bodyText1,
-                    ),
-                    SelectableText(model.summary.summary),
-                  ],
-                ),
+                child: model.summary != null
+                    ? Column(
+                        children: [
+                          Text(
+                            "Summary",
+                            style: Theme.of(context).textTheme.bodyText1,
+                          ),
+                          SelectableText(model.summary.summary),
+                        ],
+                      )
+                    : Container(),
               ),
               if (model.keywords.length > 0) Divider(),
               Padding(

@@ -25,7 +25,7 @@ class ViewEditRequestsScreen extends StatelessWidget {
               ),
               builder: (context) {
                 if (cubit.model.requests.length == 0)
-                  return emptyPage(
+                  return imageAndTextPage(
                       text: "You didn\'t make any edit request for this video",
                       c: context);
                 return Padding(

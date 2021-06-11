@@ -19,7 +19,7 @@ class HomeScreen extends StatelessWidget {
         return ConditionalBuilder(
           condition: cubit.homeModel != null,
           builder: (context) => cubit.homeModel.data.videos.length == 0
-              ? emptyPage(text: "Upload video now!", c: context)
+              ? imageAndTextPage(text: "Upload video now!", c: context)
               : videosBuilder(cubit.homeModel, cubit, context),
           fallback: (context) => Center(
             child: CircularProgressIndicator(),

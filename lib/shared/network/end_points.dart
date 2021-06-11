@@ -9,3 +9,5 @@ const LOGOUT = 'logout';
 const VIEW_EDIT_REQUEST = 'Request/videoView/';
 const VIEW_SUMMARIES = 'summary/view/';
 const UPDATE_SUMMARY = 'summary/update/';
+const REQUEST_EDIT_SUMMARY = 'requestEdit/';
+const SUBMIT_REQUEST_EDIT_SUMMARY = 'Request/store';

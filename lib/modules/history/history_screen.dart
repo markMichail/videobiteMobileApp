@@ -18,7 +18,7 @@ class HistoryScreen extends StatelessWidget {
             child: CircularProgressIndicator(),
           ),
           builder: (context) => cubit.historyModel.data.length == 0
-              ? emptyPage(text: "Upload video now!", c: context)
+              ? imageAndTextPage(text: "Upload video now!", c: context)
               : Padding(
                   padding: const EdgeInsets.symmetric(
                     horizontal: 10.0,

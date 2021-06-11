@@ -2,19 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:videobite/shared/styles/colors.dart';
 
-Widget emptyPage({String text, BuildContext c}) {
+Widget imageAndTextPage(
+    {String image = 'assets/images/empty.png', String text, BuildContext c}) {
   return Column(
     mainAxisAlignment: MainAxisAlignment.center,
     crossAxisAlignment: CrossAxisAlignment.center,
     children: [
       Expanded(
         child: Image(
-          image: AssetImage('assets/images/empty.png'),
+          image: AssetImage(image),
         ),
       ),
       if (text != null)
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+          padding: const EdgeInsets.symmetric(horizontal: 12.0),
           child: Text(
             text,
             textAlign: TextAlign.center,
@@ -22,7 +23,7 @@ Widget emptyPage({String text, BuildContext c}) {
           ),
         ),
       SizedBox(
-        height: 50,
+        height: MediaQuery.of(c).size.height / 8,
       ),
     ],
   );
@@ -82,8 +83,10 @@ Widget defaultFormField({
   IconData suffix,
   Function suffixPressed,
   bool isClickable = true,
+  maxLines = 1,
 }) =>
     TextFormField(
+      maxLines: maxLines,
       controller: controller,
       keyboardType: type,
       obscureText: isPassword,
