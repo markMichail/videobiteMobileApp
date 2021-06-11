@@ -1,3 +1,5 @@
+import 'package:videobite/models/summary_model.dart';
+
 class VideoModel {
   bool status;
   String message;
@@ -39,20 +41,6 @@ class VideoData {
       json['keywords'].forEach((element) {
         keywords.add(Keyword.fromJson(element));
       });
-  }
-}
-
-class Summary {
-  int id;
-  int videoId;
-  String summary;
-  String createdAt;
-
-  Summary.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    videoId = json['video_id'];
-    summary = json['summary'];
-    createdAt = json['created_at'];
   }
 }
 

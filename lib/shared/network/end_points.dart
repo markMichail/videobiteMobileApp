@@ -7,3 +7,5 @@ const GET_HISTORY = 'files';
 const DELETE_VIDEO = 'files/';
 const LOGOUT = 'logout';
 const VIEW_EDIT_REQUEST = 'Request/videoView/';
+const VIEW_SUMMARIES = 'summary/view/';
+const UPDATE_SUMMARY = 'summary/update/';
